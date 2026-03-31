@@ -1,0 +1,30 @@
+llm:
+  provider: ollama            # override via .env  LLM_PROVIDER
+  gemini_model: gemini-1.5-flash
+  ollama_model: gemma3:4b
+  ollama_base_url: http://localhost:11434
+  temperature: 0.2
+
+safety:
+  # Tools listed here will pause and ask y/n before running
+  require_approval_for:
+    - write_file
+    - run_command
+    - create_branch
+    - commit_and_push
+    - create_pr
+  command_whitelist:
+    - git
+    - python
+    - pytest
+    - pip
+    - dir
+    - echo
+    - type
+
+paths:
+  repo_path: null   # null = use current working directory (or REPO_PATH from .env)
+
+logging:
+  level: INFO
+  file: agent.log
